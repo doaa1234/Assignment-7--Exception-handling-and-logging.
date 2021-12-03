@@ -8,12 +8,44 @@ I did a job inside a method (getInsatnce)
 			throw new ProtocolException("No connection is available");
 		}
 		return instance;
+		
     
 if instance = null throw  ProtocolException (No connection is available)
 
-and job inside method (release)
+and job inside method (release) inside all calss Protocol
 
-
+public boolean release() throws ProtocolException {
+		//exception not needed
+	/*	if(instance ==null){
+			throw new ProtocolException("instance is already released");
+		}*/
+		if(inuse){
+			Logger.getInstance().logWarning("the protocol is in use");
+			throw new ProtocolException("the protocol is in use");
+		}
+		instance = null;
+		// unknown error
+		if(instance != null){
+			Logger.getInstance().logError("Unknown Error");
+			throw new ProtocolException("Unknown Error");
+		}
+		return true;
+	}
+I did a job inside a class  (connection)
+	Logger.getInstance().logError("Connection is already created!.") 
+		if(connections.size() >= 3 ) {
+				//do not create connection
+				Logger.getInstance().logWarning("System busy");
+				throw new ProtocolException("System busy");
+//				System.out.println("Can't create more than 3 connection!!");
+//				return null;
+			}
+			يفصح ازا كان مشغول بحد ال 3 كونكشن 
+			
+	
+	في المكان المنسب من طريقة تحيلي Logger.getInstance().log....("");	وضعت 
+وايصعا في ال demo 
+وضعت ال Logger.getInstance().log.....("");في المكان المناسب من التحيل  
 Requirements:
 4. Explain why the logger uses a singleton design pattern.
 
